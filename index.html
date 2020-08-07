@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="/min.js" defer></script>
+    <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/js/main.js"></script>
+    <!-- <script src="https://cdn.jsdelivr.net/npm/litepicker/dist/css/style.css"></script> -->
+
+    <!-- chart js dependancies -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+
+</head>
+
+<body>
+    <style>
+        #litepicker,
+        #litepickerEnd {
+            display: inline-block;
+            border-radius: 6px;
+            max-width: 200px;
+            width: 100%;
+            border: 1px solid #ddd;
+            border-top: none;
+            font-size: 1.3em;
+            text-align: center;
+            margin: .5rem;
+
+
+        }
+    </style>
+    <div class="wrapper">
+        <label for="litepicker">Choose Period</label>
+        <input onclick="changePeriodRange()" id="litepicker" type="text">
+        <input id="litepickerEnd" type="text" onclick='changePeriodRange()'>
+
+    </div>
+    <div class="wrapper">
+        <div class="div">
+            <label for="country">Choose country</label>
+            <select name="country" id="country">
+
+            </select>
+        </div>
+        <div>
+            <label for="status">Choose status</label>
+            <select name="status" id="status">
+                <option value="total" selected>Total Cases</option>
+                <option value="active">Active Cases</option>
+                <option value="recovered">Recovered Cases</option>
+                <option value="deaths">Deaths</option>
+            </select>
+        </div>
+    </div>
+
+    <button type="submit" onclick="changeCountry()">Update chart</button>
+    <canvas id="covid19"></canvas>
+
+    <script>
+
+        // period picker initializer with options
+        let picker = new Litepicker({
+            element: document.getElementById('litepicker'),
+            elementEnd: document.getElementById('litepickerEnd'),
+            singleMode: false,
+            format: 'D MMMM, YYYY',
+            startDate: new Date(new Date().setDate(new Date().getDate() - 30)).toUTCString(),
+            endDate: new Date(),
+            minDate: new Date("January 1, 2020"),
+            maxDate: new Date(),
+            // selectBackward: true,
+            // dropdowns:{months: true},
+            numberOfMonths: 2,
+            numberOfColumns: 2,
+            // inlineMode: true,
+            useResetBtn: true,
+            autoApply: true,
+
+        });
+
+
+
+
+
+
+        /* chartSelected.addEventListener('change', () => {
+
+            if (chartSelected.value == "total") {
+                dataContent.label = 'Total Cases'
+                dataContent.backgroundColor = '#ff6384'
+                dataContent.hoverBackgroundColor = '#006400'
+                dataContent.data = state.confirmed
+                window.myBar.update()
+                console.log(dataContent)
+            } else if (chartSelected.value == "active") {
+                dataContent.label = 'Active Cases'
+                dataContent.backgroundColor = '#36a2eb'
+                dataContent.hoverBackgroundColor = '#ff6384'
+                dataContent.data = state.active
+                window.myBar.update()
+                console.log(dataContent)
+            } else if (chartSelected.value == "recovered") {
+                dataContent.label = 'Recovered Cases'
+                dataContent.backgroundColor = '#488f31'
+                dataContent.hoverBackgroundColor = '#006400'
+                dataContent.data = state.recovered
+                window.myBar.update()
+                console.log(dataContent)
+            } else {
+                dataContent.label = 'Deaths'
+                dataContent.backgroundColor = '#433A3F'
+                dataContent.data = state.dead
+                dataContent.hoverBackgroundColor = '#cecece'
+                window.myBar.update()
+                console.log(dataContent)
+            }
+        }) */
+
+
+    </script>
+</body>
+
+</html>
